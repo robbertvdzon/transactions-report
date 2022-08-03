@@ -27,15 +27,38 @@ object SummaryReport {
             println("\n\nCATEGORY: $name $transactionCount transacties $totalBedrag euro")
             transactionsThisMonth.forEach {
                 val df = DecimalFormat("0.00")
-                val bedrag = String.format("%6s", df.format(it.betrag))
-                val description = it
-                    .description!!
-                    .replace("\\s+".toRegex(), " ")
-                    .replace("BETAALPAS","")
+                val bedrag = String.format("%8s", df.format(it.betrag))
+                val description = it.description!!.parseDescription()
                 println("  ${it.valutaDatum}  ${bedrag}  ${description}")
             }
 
         }
+    }
+
+    fun String.parseDescription(): String{
+        var result = this
+
+        result = result.replace("\\s+".toRegex(), " ")
+
+        if (result.contains("/TRTP/SEPA")) {
+            val splitted = result.split("/")
+            result = splitted[6] + " : " + splitted[10]
+        }
+
+        if (result.contains("/TRTP/IDEAL")) {
+            val splitted = result.split("/")
+            result = splitted[8] + " : " + splitted[10]
+        }
+
+        if (result.contains("BEA, BETAALPAS")) {
+            val splitted = result.split(",")
+            result = splitted[1].replace("BETAALPAS","").trim()
+        }
+
+        val maxChars = 100
+        if (result.length>=maxChars) result = result.substring(0,maxChars)
+
+        return result.padEnd(maxChars)  + " ==> " + this
     }
 
 
