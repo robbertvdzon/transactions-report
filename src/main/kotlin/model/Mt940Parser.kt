@@ -1,3 +1,5 @@
+package model
+
 import java.io.IOException
 import java.io.LineNumberReader
 import java.math.BigDecimal
@@ -21,7 +23,7 @@ object Mt940Parser {
      * Parse the Mt940-file. Mt940 records are delimited by '-'.
      *
      * @param reader reader
-     * @return Mt940File instance
+     * @return model.Mt940File instance
      * @throws IOException    An IO exception occurred
      * @throws DateTimeParseException parse error occurred reading text
      */
@@ -134,7 +136,7 @@ object Mt940Parser {
      *
      * @param entries       entry list
      * @param previousEntry entry to add if not null;
-     * @return new working `Mt940Entry`
+     * @return new working `model.Mt940Entry`
      */
     private fun nextEntry(
         entries: MutableList<Mt940Entry>,
@@ -166,7 +168,7 @@ object Mt940Parser {
     /**
      * Parse the value, put it into the entry.
      *
-     * @param currentEntry working `Mt940Entry`
+     * @param currentEntry working `model.Mt940Entry`
      * @param line line to parse decimal value from
      * @return the rest of the string to be parsed
      */
@@ -190,7 +192,7 @@ object Mt940Parser {
     /**
      * Parse the debit/credit value, put it into the entry.
      *
-     * @param currentEntry working `Mt940Entry`
+     * @param currentEntry working `model.Mt940Entry`
      * @param string credit / debit line to parse
      * @return the rest of the string to be parsed
      */
@@ -211,7 +213,7 @@ object Mt940Parser {
     /**
      * Parse the formatted date, put it into the entry.
      *
-     * @param currentEntry working `Mt940Entry`
+     * @param currentEntry working `model.Mt940Entry`
      * @param string string to parse date from
      * @return the rest of the string to be parsed
      * @throws DateTimeParseException thrown if date format is bad

@@ -1,3 +1,5 @@
+package model
+
 class Mt940File {
     var records: MutableList<Mt940Record?> = ArrayList()
     val entries: List<Mt940Entry?>
