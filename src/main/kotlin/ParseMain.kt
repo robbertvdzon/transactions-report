@@ -10,6 +10,7 @@ import java.time.LocalDate
 object ParseMain {
 
     // Separate DEBET and CREDET? Or not? (tikkie is special)
+    // DEBET: dan de bedrag negatief
     // voor /TRTP/SEPA regels: extract omschrijving
     // per catagorie:
     //     totaal bedrag
@@ -23,10 +24,11 @@ object ParseMain {
 
             val categories = Categories.categories
 
-            Parser.parse(transactions, categories, 3)
+            Parser.parse(transactions, categories, 9)
 
-            SummaryReport.reportSummary(categories,1)
-            SummaryReport.reportTransactions(categories,1)
+            SummaryReport.reportSummary(categories,0,9)
+//            SummaryReport.reportSummary(categories,1)
+//            SummaryReport.reportTransactions(categories,1)
 
     }
 }
