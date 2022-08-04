@@ -13,6 +13,8 @@ object ParseMain {
     //     totaal bedrag
     //     ook totaal bedrag per woord (alleen als details toggle aan staat)
     // sorteer op bedrag (zowel alle losse transacties, als de gegoepeerde transacties)
+    // vergelijk met oude begroting
+    // check alle extra kosten
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -23,9 +25,9 @@ object ParseMain {
 
             Parser.parse(transactions, categories, 9)
 
-            SummaryReport.reportSummary(categories,0,9)
+//            SummaryReport.reportSummary(categories,0,9)
 //            SummaryReport.reportSummary(categories,1)
-//            SummaryReport.reportTransactions(categories,1)
+            SummaryReport.reportTransactions2(categories,1)
 
     }
 }

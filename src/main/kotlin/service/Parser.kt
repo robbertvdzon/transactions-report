@@ -10,32 +10,22 @@ object Parser {
         val lastMonths: List<Mt940Entry> = transactions.filter { it.valutaDatum!! > LocalDate.now().minusMonths(months) }
         val mutableTransactions = lastMonths.toMutableList()
         println("size before:"+mutableTransactions.size)
-        Categories.categories.forEach {
+        categories.forEach {
                 category -> processCategory(mutableTransactions, category)
         }
         Categories.remaining.transactions.addAll(mutableTransactions)
-        println("transactions ot categorized:"+mutableTransactions.size)
+        println("transactions not categorized:"+mutableTransactions.size)
 
     }
 
 
     private fun processCategory(mutableTransactions: MutableList<Mt940Entry>, category: Category) {
-        val transactions = mutableTransactions.filter { it.description?.containsAnyOfIgnoreCase(category.searchWords) ?: false }
-        mutableTransactions.removeAll(transactions)
-        category.transactions.addAll(transactions)
-    }
-
-    private fun check(transaction: Mt940Entry, category: List<String>) {
-        if (transaction.description?.containsAnyOfIgnoreCase(category) ?: false) {
-//            println("" + transaction.valutaDatum + " " + transaction.betrag + " " + transaction.mehrzweckfeld)
+        category.subCategories.forEach {subCategory->
+            val transactions = mutableTransactions.filter { it.description?.lowercase()?.contains(subCategory.subCategory.lowercase()) ?: false }
+            subCategory.transactions.addAll(transactions)
+            category.transactions.addAll(transactions)
+            mutableTransactions.removeAll(transactions)
         }
-    }
-
-    fun String.containsAnyOfIgnoreCase(keywords: List<String>): Boolean {
-        for (keyword in keywords) {
-            if (this.contains(keyword, true)) return true
-        }
-        return false
     }
 
 

@@ -105,6 +105,32 @@ object SummaryReport {
         }
     }
 
+    fun reportTransactions2(categories: List<Category>, month: Long) {
+        categories.forEach {category ->
+            val name = category.category
+            val transactionsThisMonth = category.transactions.filterMonth(month)
+            val transactionCount = transactionsThisMonth.size
+            val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
+            val df = DecimalFormat("0.00")
+            val totalBedragString = String.format("%8s", df.format(totalBedrag))
+
+            println("\n\n${name.fixedSize(15)} $transactionCount transacties $totalBedragString euro")
+            val subCategories = category.subCategories.sortedBy { it.totalBedragOfMonth(month) }
+            subCategories.forEach { subCategory ->
+                val name = subCategory.subCategory
+                val transactionsThisMonth = subCategory.transactions.filterMonth(month)
+                val transactionCount = transactionsThisMonth.size
+                val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
+                val df = DecimalFormat("0.00")
+                val totalBedragString = String.format("%8s", df.format(totalBedrag))
+                if (transactionCount>0) {
+                    println("- ${name.fixedSize(20)} $transactionCount transacties ${totalBedragString} euro")
+                }
+            }
+
+        }
+    }
+
     fun String.parseDescription(): String{
         var result = this
 
