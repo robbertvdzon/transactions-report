@@ -122,7 +122,7 @@ object Mt940Parser {
                 line2 = parseBetrag(currentEntry, line2)
             }
             if (line2.startsWith(PREFIX_MERHZWECKFELD) && currentEntry != null) {
-                currentEntry.addToMehrzweckfeld(line2.substring(PREFIX_MERHZWECKFELD.length))
+                currentEntry.addToDescription(line2.substring(PREFIX_MERHZWECKFELD.length))
             }
         }
 
@@ -147,7 +147,7 @@ object Mt940Parser {
             entries.add(previousEntry)
         }
         val entry = Mt940Entry()
-        entry.kontobezeichnung = currentAccount
+        entry.rekeningaanduiding = currentAccount
         return entry
     }
 
@@ -185,7 +185,9 @@ object Mt940Parser {
         // See: https://www.kontopruef.de/mt940s.shtml
         // This code removes any character which is not a decimal or point.
         decimal = decimal.replace("[^\\d.]".toRegex(), "")
-        currentEntry!!.betrag = BigDecimal(decimal)
+        var bedrag =  BigDecimal(decimal)
+        if (currentEntry?.debetID==Mt940Entry.DebetID.DEBIT) bedrag = bedrag.negate()
+        currentEntry!!.betrag =  bedrag
         return line.substring(endIndex)
     }
 
@@ -199,10 +201,10 @@ object Mt940Parser {
     private fun parseSollHabenKennung(currentEntry: Mt940Entry?, string: String): String {
         var s = string
         if (string.startsWith("D")) {
-            currentEntry!!.sollHabenKennung = Mt940Entry.SollHabenKennung.DEBIT
+            currentEntry!!.debetID = Mt940Entry.DebetID.DEBIT
             s = string.substring(1)
         } else if (string.startsWith("C")) {
-            currentEntry!!.sollHabenKennung = Mt940Entry.SollHabenKennung.CREDIT
+            currentEntry!!.debetID = Mt940Entry.DebetID.CREDIT
             s = string.substring(1)
         } else {
             throw UnsupportedOperationException("soll-haben-kennung $s not yet supported")

@@ -5,36 +5,26 @@ import java.math.RoundingMode
 import java.time.LocalDate
 
 class Mt940Entry {
-    // 'Credit', in mt940, means money was transferred 
-    // to the current account.
-    enum class SollHabenKennung {
+    enum class DebetID {
         CREDIT, DEBIT
-        //STORNO_DEBIT,
-        //STORNO_CREDIT
     }
 
-    var valutaDatum // date
-            : LocalDate? = null
-    var sollHabenKennung: SollHabenKennung? = null
-
-    //    public void setMehrzweckfeld(String mehrzweckfeld) {
-    //        this.mehrzweckfeld = mehrzweckfeld;
-    //    }
-    var betrag // amount
-            : BigDecimal? = null
-    var description // multi purpose field
-            : String? = null
+    var valutaDatum : LocalDate? = null
+    var debetID: DebetID? = null
+    var betrag : BigDecimal? = null
+    var description : String? = null
         private set
-    var kontobezeichnung: String? = null
+    var rekeningaanduiding: String? = null
+
     override fun toString(): String {
         val sb = StringBuilder("At ").append(valutaDatum)
-        if (kontobezeichnung != null) {
+        if (rekeningaanduiding != null) {
             sb.append(" (")
-            sb.append(kontobezeichnung)
+            sb.append(rekeningaanduiding)
             sb.append(")")
         }
         sb.append(", ")
-        sb.append(sollHabenKennung)
+        sb.append(debetID)
         sb.append(": ")
         if (betrag != null) {
             // Set scale to 2 digits and round if necessary, then to plain string for nicer output.
@@ -47,7 +37,7 @@ class Mt940Entry {
         return sb.toString()
     }
 
-    fun addToMehrzweckfeld(string: String) {
+    fun addToDescription(string: String) {
         if (description == null || description!!.trim { it <= ' ' }.isEmpty()) {
             description = string
         } else {

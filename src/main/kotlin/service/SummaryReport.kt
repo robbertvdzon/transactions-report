@@ -24,6 +24,7 @@ object SummaryReport {
 
     fun reportSummary(categories: List<Category>, monthStart: Long, monthEnd: Long) {
 
+        // header: alle maanden
         var header = "".fixedSize(14)
         for (month in monthStart .. monthEnd){
             val monthName = LocalDate.now().minusMonths(month).month.name
@@ -31,6 +32,7 @@ object SummaryReport {
         }
         println(header)
 
+        // alle bedragen per category
         categories.forEach {category ->
             val name = category.category
             var bedragen = ""
@@ -45,8 +47,15 @@ object SummaryReport {
             println("${name.fixedSize(13)} $bedragen")
         }
 
+        // line
+        var line = "-----------------------------".fixedSize(14+10)
+        for (month in monthStart .. monthEnd){
+            line += "-----------------------------".fixedSize(10)
+        }
+        println(line)
 
-        var summaryBedragen = "".fixedSize(14)
+        // summary
+        var summaryBedragen = "Totaal".fixedSize(14)
         for (month in monthStart .. monthEnd){
             var summary: Double = 0.0
             categories.forEach {category ->
@@ -58,6 +67,22 @@ object SummaryReport {
 
         }
         println(summaryBedragen)
+
+        // summary (zonder inkomsten)
+        var summaryBedragenZonderInkomsten = "Totaal zonder inkomsten".fixedSize(14)
+        for (month in monthStart .. monthEnd){
+            var summaryZonderInkomsten: Double = 0.0
+            categories.forEach {category ->
+                if (category.category!="Inkomsten") {
+                    val transactionsThisMonth = category.transactions.filterMonth(month)
+                    val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
+                    summaryZonderInkomsten += totalBedrag
+                }
+            }
+            summaryBedragenZonderInkomsten = "$summaryBedragenZonderInkomsten ${summaryZonderInkomsten.toInt().toString().fixedSize(10)}"
+
+        }
+        println(summaryBedragenZonderInkomsten)
 
 
     }
