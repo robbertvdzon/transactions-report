@@ -14,6 +14,7 @@ object Parser {
                 category -> processCategory(mutableTransactions, category)
         }
         Categories.remaining.transactions.addAll(mutableTransactions)
+        Categories.remaining.subCategories.first().transactions.addAll(mutableTransactions)
         println("transactions not categorized:"+mutableTransactions.size)
 
     }

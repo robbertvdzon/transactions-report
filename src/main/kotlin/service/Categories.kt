@@ -7,7 +7,7 @@ object Categories {
 
     val remaining = Category(
         category = "Remaining",
-        searchWords = emptyList()
+        searchWords = listOf("(Zie transacties)")
     )
 
     val categories = listOf(

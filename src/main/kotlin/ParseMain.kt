@@ -1,11 +1,7 @@
-import model.Category
-import model.Mt940Entry
 import service.Categories
 import service.Loader
 import service.Parser
 import service.SummaryReport
-import java.io.IOException
-import java.time.LocalDate
 
 object ParseMain {
 /*
@@ -23,15 +19,24 @@ Bestanden:
     @JvmStatic
     fun main(args: Array<String>) {
 
-            val transactions = Loader.loadTransactions()
+        val transactions = Loader.loadTransactions()
 
-            val categories = Categories.categories
+        val categories = Categories.categories
 
-            Parser.parse(transactions, categories, 9)
+        val totalMonthsToProcess = 9L
+        val monthsToProcess = (0L..totalMonthsToProcess).toList()
+        SummaryReport.createEmptyFiles(monthsToProcess)
 
-//            SummaryReport.reportSummary(categories,0,9)
-//            SummaryReport.reportSummary(categories,1)
-            SummaryReport.reportTransactions2(categories,1)
+        // parse transactions
+        Parser.parse(transactions, categories, totalMonthsToProcess)
+
+        // create reports
+        SummaryReport.reportSummary(categories, 0, 9)
+        monthsToProcess.forEach {
+            SummaryReport.reportSummaryForMonth(categories, it)
+            SummaryReport.reportTransactions2(categories,it)
+            SummaryReport.reportTransactions(categories,it)
+        }
 
     }
 }

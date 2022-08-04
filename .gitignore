@@ -5,7 +5,7 @@ build
 target
 **/*.iml
 /.data/
-
+reports
 .DS_Store
 
 operations-demand-service/*.avro
