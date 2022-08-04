@@ -9,13 +9,10 @@ import java.time.LocalDate
 
 object ParseMain {
 
-    // Separate DEBET and CREDET? Or not? (tikkie is special)
-    // DEBET: dan de bedrag negatief
-    // voor /TRTP/SEPA regels: extract omschrijving
     // per catagorie:
     //     totaal bedrag
     //     ook totaal bedrag per woord (alleen als details toggle aan staat)
-    // per categorie: laten zien hoeveel uitgegeven voor elke maand (zodat je kan zie of dat hetzelfde blijft)
+    // sorteer op bedrag (zowel alle losse transacties, als de gegoepeerde transacties)
 
     @JvmStatic
     fun main(args: Array<String>) {
