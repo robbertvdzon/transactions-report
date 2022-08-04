@@ -26,7 +26,7 @@ object SummaryReport {
 
         // header: alle maanden
         var header = "".fixedSize(14)
-        for (month in monthStart .. monthEnd){
+        for (month in monthEnd downTo  monthStart){
             val monthName = LocalDate.now().minusMonths(month).month.name
             header = "$header ${monthName.fixedSize(10)}"
         }
@@ -36,7 +36,7 @@ object SummaryReport {
         categories.forEach {category ->
             val name = category.category
             var bedragen = ""
-            for (month in monthStart .. monthEnd){
+            for (month in monthEnd downTo  monthStart){
                 val transactionsThisMonth = category.transactions.filterMonth(month)
                 val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
                 val df = DecimalFormat("0.00")
@@ -49,14 +49,14 @@ object SummaryReport {
 
         // line
         var line = "-----------------------------".fixedSize(14+10)
-        for (month in monthStart .. monthEnd){
+        for (month in monthEnd downTo  monthStart){
             line += "-----------------------------".fixedSize(10)
         }
         println(line)
 
         // summary
         var summaryBedragen = "Totaal".fixedSize(14)
-        for (month in monthStart .. monthEnd){
+        for (month in monthEnd downTo  monthStart){
             var summary: Double = 0.0
             categories.forEach {category ->
                 val transactionsThisMonth = category.transactions.filterMonth(month)
@@ -70,7 +70,7 @@ object SummaryReport {
 
         // summary (zonder inkomsten)
         var summaryBedragenZonderInkomsten = "Totaal zonder inkomsten".fixedSize(14)
-        for (month in monthStart .. monthEnd){
+        for (month in monthEnd downTo  monthStart){
             var summaryZonderInkomsten: Double = 0.0
             categories.forEach {category ->
                 if (category.category!="Inkomsten") {
