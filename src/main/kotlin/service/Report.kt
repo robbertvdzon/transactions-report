@@ -2,9 +2,6 @@ package service
 
 import extensions.filterMonth
 import model.Category
-import model.Mt940Entry
-import service.SummaryReport.parseDescription
-import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.time.LocalDate
 

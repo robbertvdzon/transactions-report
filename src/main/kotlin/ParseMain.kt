@@ -8,13 +8,17 @@ import java.io.IOException
 import java.time.LocalDate
 
 object ParseMain {
+/*
+Bestanden:
+- summary (alle maanden)
+-  per maand
+    - korte summary
+    - summary per subcategory
+    - import lijst
 
-    // per catagorie:
-    //     totaal bedrag
-    //     ook totaal bedrag per woord (alleen als details toggle aan staat)
-    // sorteer op bedrag (zowel alle losse transacties, als de gegoepeerde transacties)
-    // vergelijk met oude begroting
-    // check alle extra kosten
+- vergelijk met oude begroting
+- check extra kosten
+ */
 
     @JvmStatic
     fun main(args: Array<String>) {
