@@ -87,12 +87,20 @@ object Categories {
                         WIM BRANDJES
                         THOMAS BARBERSHOP
                         NRC IN DE OCHTENDDIGITAAL
+                        NLE
+                        INCASSO ALGEMEEN DOORLOPEND
                         """.toList()
         ),
         Category(
-            category = "Inkomsten",
+            category = "Inkomsten Karen",
             searchWords = """
-                        SALARIS
+                        SALARIS KAREN
+                    """.toList()
+        ),
+        Category(
+            category = "Inkomsten Robbert",
+            searchWords = """
+                        SALARIS ROBBERT
                     """.toList()
         ),
         Category(

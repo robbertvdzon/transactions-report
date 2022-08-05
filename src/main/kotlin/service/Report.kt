@@ -117,7 +117,7 @@ object SummaryReport {
         """.trimIndent())
         categories.forEach {category ->
             val name = category.category
-            val transactionsThisMonth = category.transactions.filterMonth(month)
+            val transactionsThisMonth = category.transactions.filterMonth(month).sortedBy { it.betrag }
             val transactionCount = transactionsThisMonth.size
             val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
             file.println("\n${name.fixedSize(10)} $transactionCount transacties $totalBedrag euro")
