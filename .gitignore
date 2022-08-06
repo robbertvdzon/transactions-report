@@ -6,6 +6,8 @@ target
 **/*.iml
 /.data/
 reports
+reports_robbert
+reports_karen
 .DS_Store
 
 operations-demand-service/*.avro

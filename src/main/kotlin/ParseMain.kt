@@ -23,7 +23,7 @@ Bestanden:
 
         val categories = Categories.categories
 
-        val totalMonthsToProcess = 9L
+        val totalMonthsToProcess = 17L
         val monthsToProcess = (0L..totalMonthsToProcess).toList()
         SummaryReport.createEmptyFiles(monthsToProcess)
 
@@ -31,7 +31,7 @@ Bestanden:
         Parser.parse(transactions, categories, totalMonthsToProcess)
 
         // create reports
-        SummaryReport.reportSummary(categories, 0, 9)
+        SummaryReport.reportSummary(categories, 0, totalMonthsToProcess)
         monthsToProcess.forEach {
             SummaryReport.reportSummaryForMonth(categories, it)
             SummaryReport.reportTransactions2(categories,it)

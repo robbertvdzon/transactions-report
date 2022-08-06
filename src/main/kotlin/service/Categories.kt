@@ -77,13 +77,10 @@ object Categories {
             category = "vaste lasten",
             searchWords = """
                         OBVION
-                        TINQ
                         DE NEDERLANDSE KLUIS
                         NAT POSTCODE LOTERIJ
                         BRAND NEW DAY BANK NV
                         HEALTH CLUB HEEMSKERK
-                        CREDITCARD
-                        SHELL
                         WIM BRANDJES
                         THOMAS BARBERSHOP
                         NRC IN DE OCHTENDDIGITAAL
@@ -92,15 +89,37 @@ object Categories {
                         """.toList()
         ),
         Category(
+            category = "benzine",
+            searchWords = """
+                        TINQ
+                        SHELL
+                        """.toList()
+        ),
+        Category(
             category = "Inkomsten Karen",
             searchWords = """
-                        SALARIS KAREN
                     """.toList()
         ),
         Category(
             category = "Inkomsten Robbert",
             searchWords = """
+                    """.toList()
+        ),
+        Category(
+            category = "Zakelijke kosten Karen",
+            searchWords = """
+                    """.toList()
+        ),
+        Category(
+            category = "Zakelijke kosten Robbert",
+            searchWords = """
+                    """.toList()
+        ),
+        Category(
+            category = "Interne overboeking",
+            searchWords = """
                         SALARIS ROBBERT
+                        SALARIS KAREN
                     """.toList()
         ),
         Category(
@@ -112,6 +131,7 @@ object Categories {
         Category(
             category = "Extra",
             searchWords = """
+                        CREDITCARD
                         IKEA
                         TIKKIE
                         PHILIPSEN

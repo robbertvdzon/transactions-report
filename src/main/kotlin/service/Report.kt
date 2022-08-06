@@ -36,7 +36,7 @@ object SummaryReport {
         val file = getSummaryFile()
 
         // header: alle maanden
-        var header = "".fixedSize(14)
+        var header = "".fixedSize(31)
         for (month in monthEnd downTo  monthStart){
             val monthName = LocalDate.now().minusMonths(month).month.name
             header = "$header ${monthName.fixedSize(10)}"
@@ -56,20 +56,20 @@ object SummaryReport {
                 bedragen = "$bedragen $bedrag"
             }
 
-            println("${name.fixedSize(13)} $bedragen")
-            file.println("${name.fixedSize(13)} $bedragen")
+            println("${name.fixedSize(30)} $bedragen")
+            file.println("${name.fixedSize(30)} $bedragen")
         }
 
         // line
-        var line = "-----------------------------".fixedSize(14+10)
+        var line = "---------------------------------------------------------------------------".fixedSize(31)
         for (month in monthEnd downTo  monthStart){
-            line += "-----------------------------".fixedSize(10)
+            line += "------------------------------".fixedSize(11)
         }
         println(line)
         file.println(line)
 
         // summary
-        var summaryBedragen = "Totaal".fixedSize(14)
+        var summaryBedragen = "Totaal".fixedSize(31)
         for (month in monthEnd downTo  monthStart){
             var summary: Double = 0.0
             categories.forEach {category ->
@@ -84,11 +84,11 @@ object SummaryReport {
         file.println(summaryBedragen)
 
         // summary (zonder inkomsten)
-        var summaryBedragenZonderInkomsten = "Totaal zonder inkomsten".fixedSize(14)
+        var summaryBedragenZonderInkomsten = "Totaal zonder inkomsten".fixedSize(31)
         for (month in monthEnd downTo  monthStart){
             var summaryZonderInkomsten: Double = 0.0
             categories.forEach {category ->
-                if (category.category!="Inkomsten") {
+                if (category.category!="Inkomsten Karen" && category.category!="Inkomsten Robbert" && category.category!="Interne overboeking") {
                     val transactionsThisMonth = category.transactions.filterMonth(month)
                     val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
                     summaryZonderInkomsten += totalBedrag
@@ -119,10 +119,10 @@ object SummaryReport {
             val name = category.category
             val transactionsThisMonth = category.transactions.filterMonth(month).sortedBy { it.betrag }
             val transactionCount = transactionsThisMonth.size
+            val df = DecimalFormat("0.00")
             val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
-            file.println("\n${name.fixedSize(10)} $transactionCount transacties $totalBedrag euro")
+            file.println("\n${name.fixedSize(30)} $transactionCount transacties ${df.format(totalBedrag)} euro")
             transactionsThisMonth.forEach {
-                val df = DecimalFormat("0.00")
                 val bedrag = String.format("%8s", df.format(it.betrag))
                 val description = it.description?.parseDescription()?:"(GEEN OMSCHRIJVING!)"
                 file.println("  ${it.valutaDatum}  ${bedrag}  ${description}")
