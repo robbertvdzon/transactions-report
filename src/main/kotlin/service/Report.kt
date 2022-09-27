@@ -1,12 +1,13 @@
 package service
 
 import extensions.filterMonth
+import extensions.formatBedrag
 import extensions.newFile
 import extensions.println
 import model.Category
+import model.Mt940Entry
+import service.SummaryReport.parseDescription
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.text.DecimalFormat
 import java.time.LocalDate
 
@@ -25,15 +26,27 @@ object SummaryReport {
             val name = category.category
             val transactionsThisMonth = category.transactions.filterMonth(month)
             val totalBedrag = transactionsThisMonth.map { it.betrag!!.toDouble() }.sum()
-            val df = DecimalFormat("0.00")
-            val bedrag = df.format(totalBedrag).fixedSize(8)
-
-            file.println("${name.fixedSize(13)} $bedrag euro")
+            file.println("${name.fixedSize(13)} ${totalBedrag.formatBedrag()} euro")
         }
     }
 
     fun reportSummary(categories: List<Category>, monthStart: Long, monthEnd: Long) {
         val file = getSummaryFile()
+
+        // cache the average bedragen
+        val averageCache: MutableMap<Category, Double> = mutableMapOf()
+        val aantalMaanden = monthEnd - monthStart + 1
+        categories.forEach { category ->
+            val transactionsThisCategory: MutableList<Mt940Entry> = mutableListOf()
+            for (month in monthEnd downTo  monthStart){
+                transactionsThisCategory.addAll(category.transactions.filterMonth(month))
+            }
+            val totalBedrag = transactionsThisCategory.map { it.betrag!!.toDouble() }.sum()
+            val gemiddeldBedrag = totalBedrag/aantalMaanden
+            averageCache.set(category, gemiddeldBedrag)
+        }
+
+
 
         // header: alle maanden
         var header = "".fixedSize(31)
@@ -41,6 +54,7 @@ object SummaryReport {
             val monthName = LocalDate.now().minusMonths(month).month.name
             header = "$header ${monthName.fixedSize(10)}"
         }
+        header = "$header GEMIDDELD"
         println(header)
         file.println(header)
 
@@ -55,6 +69,10 @@ object SummaryReport {
                 val bedrag = df.format(totalBedrag).fixedSize(10)
                 bedragen = "$bedragen $bedrag"
             }
+            val df = DecimalFormat("0.00")
+            val gemiddeld = averageCache.get(category)?:"?"
+            val gemiddeldStr = df.format(gemiddeld).fixedSize(10)
+            bedragen = "$bedragen $gemiddeldStr"
 
             println("${name.fixedSize(30)} $bedragen")
             file.println("${name.fixedSize(30)} $bedragen")
@@ -62,7 +80,7 @@ object SummaryReport {
 
         // line
         var line = "---------------------------------------------------------------------------".fixedSize(31)
-        for (month in monthEnd downTo  monthStart){
+        for (month in (monthEnd+1) downTo  monthStart){
             line += "------------------------------".fixedSize(11)
         }
         println(line)
@@ -80,6 +98,9 @@ object SummaryReport {
             summaryBedragen = "$summaryBedragen ${summary.toInt().toString().fixedSize(10)}"
 
         }
+        val gemiddeldSum = averageCache.values.map { it.toFloat() }.sum()
+        summaryBedragen = "$summaryBedragen ${gemiddeldSum.toInt().toString().fixedSize(10)}"
+
         println(summaryBedragen)
         file.println(summaryBedragen)
 
@@ -97,6 +118,8 @@ object SummaryReport {
             summaryBedragenZonderInkomsten = "$summaryBedragenZonderInkomsten ${summaryZonderInkomsten.toInt().toString().fixedSize(10)}"
 
         }
+        val gemiddeldSumZonderInkomsten = averageCache.filter { it.key.category!="Inkomsten Karen" && it.key.category!="Inkomsten Robbert" && it.key.category!="Interne overboeking" }.values.map { it.toFloat() }.sum()
+        summaryBedragenZonderInkomsten = "$summaryBedragenZonderInkomsten ${gemiddeldSumZonderInkomsten.toInt().toString().fixedSize(10)}"
         println(summaryBedragenZonderInkomsten)
         file.println(summaryBedragenZonderInkomsten)
 
@@ -169,6 +192,33 @@ object SummaryReport {
         }
     }
 
+
+    fun reportSubcategorieAllPeriod(categories: List<Category>, totalMonths: Long) {
+        categories.forEach { category ->
+            println("\n\nSUB CATEGORIES FROM ${category.category}")
+
+            category.transactions.forEach {
+                val bedrag = it.betrag?.toDouble()?.formatBedrag()
+                val description = it.description?.parseDescription()?:"(GEEN OMSCHRIJVING!)"
+//                println("  ${it.valutaDatum}  ${bedrag}  ${description}")
+//                        println( it.description)
+            }
+
+            val subCategories = category.subCategories
+            subCategories.forEach { subCategory ->
+                val total = subCategory.transactions.mapNotNull { it.betrag?.toDouble() }.sum()
+                val perMonth = total/totalMonths
+                println("  ${subCategory.getDescription().fixedSize(30)} : ${subCategory.transactions.size} transactions, total: ${total.formatBedrag()}  per maand: ${perMonth.formatBedrag()}")
+                subCategory.transactions.forEach {
+                    val bedrag = it.betrag?.toDouble()?.formatBedrag()
+                    val description = it.description?.parseDescription()?:"(GEEN OMSCHRIJVING!)"
+//                        println("     ${it.valutaDatum}  ${bedrag}  ${description}")
+                    println("     ${it.valutaDatum}  ${bedrag}  ${it.getSummary()}")
+                }
+            }
+        }
+    }
+
     fun String.parseDescription(): String{
         var result = this
 
@@ -183,13 +233,29 @@ object SummaryReport {
             val splitted = result.split("/")
             result = splitted[8] + " : " + splitted[10]
         }
+        if (result.contains("SEPA IDEAL IBAN:")) {
+            val splitted = result.split(":")
+            result = splitted[3]
+        }
 
         if (result.contains("BEA, BETAALPAS")) {
             val splitted = result.split(",")
             result = splitted[1].replace("BETAALPAS","").trim()
         }
+        if (result.contains("BEA NR:")) {
+            val splitted = result.split("/")
+            result = splitted[1]
+        }
+        if (result.contains("SEPA INCASSO ALGEMEEN DOORLOPEND INCASSANT")) {
+            val splitted = result.split(":")
+            result = splitted[2]
+        }
+        if (result.contains("SEPA PERIODIEKE OVERB")) {
+            val splitted = result.split(":")
+            result = splitted[4]
+        }
 
-        return result.fixedSize(100)  + " ==> " + this
+        return result.trim().fixedSize(100)  + " ==> " + this
     }
 
     fun getSummaryFile(): File {

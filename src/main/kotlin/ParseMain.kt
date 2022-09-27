@@ -4,18 +4,6 @@ import service.Parser
 import service.SummaryReport
 
 object ParseMain {
-/*
-Bestanden:
-- summary (alle maanden)
--  per maand
-    - korte summary
-    - summary per subcategory
-    - import lijst
-
-- vergelijk met oude begroting
-- check extra kosten
- */
-
     @JvmStatic
     fun main(args: Array<String>) {
 
@@ -23,20 +11,29 @@ Bestanden:
 
         val categories = Categories.categories
 
-        val totalMonthsToProcess = 17L
-        val monthsToProcess = (0L..totalMonthsToProcess).toList()
+        val fromMonth = 0L
+        val toMonth = 9L
+//        val totalMonthsToProcess = 16L
+//        val totalMonthsToProcess = 17L
+//        val totalMonthsToProcess = 1L
+        val monthsToProcess = (fromMonth..toMonth).toList()
         SummaryReport.createEmptyFiles(monthsToProcess)
 
         // parse transactions
-        Parser.parse(transactions, categories, totalMonthsToProcess)
+        Parser.parse(transactions, categories, toMonth)
 
         // create reports
-        SummaryReport.reportSummary(categories, 0, totalMonthsToProcess)
+        SummaryReport.reportSummary(categories, fromMonth, toMonth)
         monthsToProcess.forEach {
             SummaryReport.reportSummaryForMonth(categories, it)
             SummaryReport.reportTransactions2(categories,it)
             SummaryReport.reportTransactions(categories,it)
         }
+
+        val category  =categories.first { it.category=="Remaining" }
+        val aantalMaanden = toMonth - fromMonth +1
+//        SummaryReport.reportSubcategorieAllPeriod(categories, aantalMaanden)
+//        SummaryReport.reportSubcategorieAllPeriod(listOf(category), aantalMaanden)
 
     }
 }

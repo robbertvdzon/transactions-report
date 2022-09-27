@@ -12,223 +12,308 @@ object Categories {
 
     val categories = listOf(
         Category(
-            category = "Boodschappen",
+            category = "Zakelijke kosten Karen",
             searchWords = """
-                        JUMBO
-                        ALBERT HEIJN
-                        DIRKVDBROEK
-                        DEKAMARKT
-                        ARTEKA
-                        GR&FR PIET BEENTJES
-                        HAARSHOP
-                        AHOLD
-                        GROENTEMARKT
-                        BAKKER MEIJER
-                        SIEBE REITSMA BROOD
-                        PETS PLACE
-                        CCV KANEDA SUSHI & BOW
-                        BACKWERK
-                        GROENTE EN FRUITBOKSER
-                        VISHANDEL
-                        FAMILY HEEMSKERK
-                        CCV MINU MARKT
-                        KRUIDVAT
-                        TREKPLEISTER
-                        ISTANBUL MARKET
-                        SLAGERIJ JOHN DE ROODE
-                        VOMAR
-                        """.toList()
-        ),
-        Category(
-            category = "Verzekering",
-            searchWords = """
-                        VOOGD EN VOOGD
-                        NATIONALE-NEDERLANDEN
-                        BLG WONEN
-                        ASSURANTIEKANTOOR J C DE LANGE
-                        DELA NATURA
-                        REAAL
-                        TVAARTVERZ
-                        """.toList()
-//                    REMI
-        ),
-        Category(
-            category = "Belasting",
-            searchWords = """
-                        GEMEENTELIJKE HEFFINGEN 2022
-                        BELASTINGDIENST
-                        HOOGHEEMRAADSCHAP
-                        """.toList()
-        ),
-        Category(
-            category = "Goede doelen",
-            searchWords = """
-                        NATUURMONUMENTEN AMERSFOORT
-                        OXFAM NOVIB
-                        AIDSFONDS
-                        KINDERDORPEN
-                        UNICEF
-                        ARTSEN ZONDER GRENZEN
-                        KANKERBESTRIJDING
-                        DIABETES FDS
-                        """.toList()
-        ),
-        Category(
-            category = "vaste lasten",
-            searchWords = """
-                        OBVION
-                        DE NEDERLANDSE KLUIS
-                        NAT POSTCODE LOTERIJ
-                        BRAND NEW DAY BANK NV
-                        HEALTH CLUB HEEMSKERK
-                        WIM BRANDJES
-                        THOMAS BARBERSHOP
-                        NRC IN DE OCHTENDDIGITAAL
-                        NLE
-                        INCASSO ALGEMEEN DOORLOPEND
-                        """.toList()
-        ),
-        Category(
-            category = "benzine",
-            searchWords = """
-                        TINQ
-                        SHELL
-                        """.toList()
+                ABN AMRO BANK KOSTEN@475081803#ABN AMRO BANK
+                ABN AMRO BANK VERZEKERING@475081803#ABN AMRO VERZ
+                TELE2@475081803#TELE2
+                OVERIG@475081803#DEBIT#!SALARIS
+                OVERIG@475081803#DEBIT#!OVER
+                    """.toList()
         ),
         Category(
             category = "Inkomsten Karen",
             searchWords = """
-                    """.toList()
-        ),
-        Category(
-            category = "Inkomsten Robbert",
-            searchWords = """
-                    """.toList()
-        ),
-        Category(
-            category = "Zakelijke kosten Karen",
-            searchWords = """
-                    """.toList()
-        ),
-        Category(
-            category = "Zakelijke kosten Robbert",
-            searchWords = """
+                INKOMSTEN@475081803#CREDIT#!SALARIS
                     """.toList()
         ),
         Category(
             category = "Interne overboeking",
             searchWords = """
-                        SALARIS ROBBERT
-                        SALARIS KAREN
+                    SALARIS KAREN@SALARIS KAREN
+                    SALARIS ROBBERT@SALARIS ROBBERT
+                    OVERBOEKING@OMSCHRIJVING: OVER#RC VAN DER ZON
                     """.toList()
         ),
         Category(
-            category = "Hobby",
+            category = "Investeringen",
             searchWords = """
-                        ATLETIEKVERENIGING
+                    Brand New Day@BND#!PENSIOENREKENING
+                    Bitcoin@BITVAVO
                     """.toList()
         ),
         Category(
-            category = "Extra",
+            category = "Pensioen Robbert",
             searchWords = """
-                        CREDITCARD
-                        IKEA
-                        TIKKIE
-                        PHILIPSEN
-                        TWISKE             
-                        BEKKER
-                        BESTELLING
-                        ROOM70
-                        PALMAVERDE
-                        STUDIO ARMIN
-                        SEP DE HAVEN VAN TEXEL
-                        KOFFIEHUIS
-                        VERMAAT LEISURE
-                        WE RIDE
-                        BOL.COM
-                        ZALANDO
-                        VITAILY
-                        PRAXIS
-                        BLOKKER
-                        ALOHA
-                        RINUS DE RUYTER BLOEM
-                        KNOEST ETEN &DRINKEN
-                        STUMPEL
-                        CCV ROYS
-                        GASTERIJ KRUISBERG
-                        RAP YOUNG ART FESTIVA
-                        JACK S CAFE B.V
-                        YUKSEL DELICATESSEN
-                        CCV DE AMBACHTELIJKE W
-                        BEVER
-                        DECATHLON
-                        IMMING BIKES
-                        SUMUP
-                        KRINGLOOP HEEMSKERK
-                        XENOS
-                        SIMONS UW TOPSLIJTER
-                        TRIER
-                        MANDERSCHEID
-                        GEWOONINWIJKAA
-                        GEWOON IN WIJK AAN ZEE
-                        BITBURG
-                        SCHRAARD
-                        SUMUP GOUDEN NAALD
-                        LOKAAL
-                        VONKELS
-                        RESTAURANT  T EETHUY
-                        PG CENTRUM-RINGERS
-                        TER STAL
-                        MCDONALD
-                        BEDBURG
-                        GEROLSTEIN
-                        HERTOGENBOS
-                        KIOSK
-                        Q PARK
-                        LAURENTZ
-                        RIJWIELH. T.BEENTJES
-                        KOFFIE-DIK
-                        BABBERICH
-                        OBERHONNEFELD,LAND: DE
-                        ELLWANGEN,LAND: DE
-                        NASSEREITH,LAND: AT
-                        PRAD AM STILF,LAND: IT
-                        BORMIO,LAND: IT
-                        ATM,LAND: IT
-                        NAUDERS/RESCH,LAND: AT
-                        DIETMANNSRIED,LAND: DE
-                        GELDMAAT
-                        STADSSCHOUWB
-                        HEILIGENROTH,LAND: DE
-                        HEMA
-                        CAFE DE HOEK
-                        ZOETERMEER
-                        S-GRAVENHAGE
-                        MAASTRICHT
-                        HERTOGENBO
-                        PARKEREN
-                        SEPA OVERBOEKING
-                        VRIJGEZELLENFEEST
-                        JULIA S UT
-                         HMSHOST STADSKAMER 
-                         FALAFEL CITY
-                         JEU DE BOULESBAR
-                         HAMPTON BY HILTON
-                         AVF - LOUNGE
-                          HET DORRUP
-                          BRUNA
-                          FA. A. BOONTJES
-                           DE ROSET
-                           STRESS VRIJ LICHAAM
-                           DESIGUALOMSCHRIJVING
-                           SPAKENBURGSE WARME BAK
-                           SITEDISH
-                           CADEAUTJE
-                           DENNEMAN:BRANDSTOF
-                           PRIMERA
+                    Brand New Day@BND#PENSIOENREKENING
+                        """.toList()
+        ),
+        Category(
+            category = "Familie hypotheek",
+            searchWords = """
+                    VDZON@KERSTKADO#A.G. VAN DER ZON
+                    VDZON@HYPOTHEEK
+                    VLEUGEL@F.C. VLEUGEL#!ZONNEPANEE
                     """.toList()
+        ),
+        Category(
+            category = "Ontvangen giften",
+            searchWords = """
+                    VLEUGEL@F.C. VLEUGEL#ZONNEPANEE
+                    """.toList()
+        ),
+        Category(
+            category = "Zakelijke kosten Robbert",
+            searchWords = """
+                ABN AMRO BANK KOSTEN@532750330#ABN AMRO BANK
+                VODAFONE EN ZIGGO@532750330#VODAFONE
+                BUUR & BRAKENHOFF@BUUR & BRAKENHOFF
+                MOVIR@MOVIR
+                NLJUG@NLJUG
+                VOOGD & VOOGD AANSPRAKELIJKHEIDSVERZ@532750330#VOOGD
+                    """.toList()
+        ),
 
+        Category(
+            category = "Verzekering",
+            searchWords = """
+                VOOGD & VOOGD VOLKSWAGEN VERZ@541739336#VOOGD#VZ-616-T
+                VOOGD & VOOGD HUYANDAI VERZ@541739336#VOOGD#81-NDX-8
+                VOOGD & VOOGD REISVERZEKERING@541739336#VOOGD#REIS POLIS 
+                VOOGD & VOOGD VOORDEELPAKKET@541739336#VOOGD#VOORDEELPAKKET
+                NATIONALE-NEDERLANDEN@NATIONALE-NEDERLANDEN
+                BLG WONEN 0852@BLG WONEN#0852
+                BLG WONEN 0853 NL25@BLG WONEN#0853#NL25
+                BLG WONEN 0853 NL35@BLG WONEN#0853#NL35
+                BLG WONEN@BLG WONEN
+                J C DE LANGE, UITVAART@TVAARTVERZ
+                DELA NATURA@DELA NATURA
+                REAAL@REAAL
+                        """.toList()
         ),
+        Category(
+            category = "Belasting",
+            searchWords = """
+                        VZ-616-T@BELASTINGDIENST#VZ-616-T
+                        81-NDX-8@BELASTINGDIENST#81-NDX-8
+                        HOOGHEEMRAADSCHAP@HOOGHEEMRAADSCHAP
+                        GEMEENTELIJKE HEFFINGEN@GEMEENTELIJKE HEFFINGEN
+                        ZVW 2022
+                        IB/PVV
+                        BELASTINGDIENST
+                        """.toList()
+        ),
+        Category(
+            category = "Loonbelasting",
+            searchWords = """
+                        ZVW 2022@ZVW 2022
+                        ZVW 2021@ZVW 2021
+                        IB/PVV@IB/PVV
+                        BELASTINGDIENST OVERIG@BELASTINGDIENST#!SEPA OVERBOEKING
+                        """.toList()
+        ),//
+        Category(
+            category = "BTW",
+            searchWords = """
+                        BELASTINGDIENST OVERIG@BELASTINGDIENST#SEPA OVERBOEKING
+                        """.toList()
+        ),//
+        Category(
+            category = "Inkomsten Robbert",
+            searchWords = """
+                INKOMSTEN@532750330#CREDIT#!SALARIS#!A.G. VAN DER ZON
+                    """.toList()
+        ),
+
+        Category(
+            category = "creditcard",
+            searchWords = """
+                        INT CARD SERVICES@INT CARD SERVICES
+                        """.toList()
+        ),
+        Category(
+            category = "benzine",
+            searchWords = """
+                        TINQ@TINQ
+                        SHELL@SHELL
+                        SERV.STAT. DE BAANDERT@SERV.STAT. DE BAANDERT
+                        """.toList()
+        ),
+        Category(
+            category = "Goede doelen",
+            searchWords = """
+                        OXFAM NOVIB@OXFAM NOVIB
+                        AIDSFONDS@AIDSFONDS
+                        KINDERDORPEN@KINDERDORPEN
+                        UNICEF@UNICEF
+                        ARTSEN ZONDER GRENZEN@ARTSEN ZONDER GRENZEN
+                        KANKERBESTRIJDING@KANKERBESTRIJDING
+                        DIABETES FDS@DIABETES FDS
+                        """.toList()
+        ),
+        Category(
+            category = "Boodschappen",
+            searchWords = """
+                        JUMBO@JUMBO
+                        ALBERT HEIJN@ALBERT HEIJN
+                        DIRKVDBROEK@DIRKVDBROEK
+                        DEKAMARKT@DEKAMARKT
+                        ARTEKA@ARTEKA
+                        GR&FR PIET BEENTJES@GR&FR PIET BEENTJES
+                        HAARSHOP@HAARSHOP
+                        AHOLD@AHOLD
+                        GROENTEMARKT@GROENTEMARKT
+                        BAKKER MEIJER@BAKKER MEIJER
+                        SIEBE REITSMA BROOD@SIEBE REITSMA BROOD
+                        PETS PLACE@PETS PLACE
+                        CCV KANEDA SUSHI & BOW@CCV KANEDA SUSHI & BOW
+                        BACKWERK@BACKWERK
+                        GROENTE EN FRUITBOKSER@GROENTE EN FRUITBOKSER
+                        VISHANDEL@VISHANDEL
+                        CCV MINU MARKT@CCV MINU MARKT
+                        KRUIDVAT@KRUIDVAT
+                        TREKPLEISTER@TREKPLEISTER
+                        ISTANBUL MARKET@ISTANBUL MARKET
+                        SLAGERIJ JOHN DE ROODE@SLAGERIJ JOHN DE ROODE
+                        VOMAR@VOMAR
+                        """.toList()
+        ),
+
+
+
+        Category(
+            category = "vaste lasten",
+            searchWords = """
+                        OBVION@OBVION
+                        DE NEDERLANDSE KLUIS@DE NEDERLANDSE KLUIS
+                        NAT POSTCODE LOTERIJ@NAT POSTCODE LOTERIJ
+                        MYLIFE KAREN@HEALTH CLUB HEEMSKERK#MYLIFE LIFE
+                        MYLIFE ROBBERT@HEALTH CLUB HEEMSKERK#MYLIFE FIT
+                        WIM BRANDJES@WIM BRANDJES
+                        THOMAS BARBERSHOP@THOMAS BARBERSHOP
+                        NRC IN DE OCHTENDDIGITAAL@NRC IN DE OCHTENDDIGITAAL
+                        NLE@NLE
+                        OSTEOPATHIE@OSTEOPATHIE
+                        VAN SOMEREN DIERENW@VAN SOMEREN DIERENW
+                        CHIN EN TSAI@CHIN EN TSAI
+                        VIDEOLAND@VIDEOLAND
+                        VITAILY@VITAILY
+                        NRC MEDIA@NRC MEDIA
+                        HARMONY SERVICE CENTER(ICare)@HARMONY SERVICE CENTER
+                        WATERLEIDINGBEDRIJF@WATERLEIDINGBEDRIJF
+                        BEVERWIJKSE RENNERSCLUB@BEVERWIJKSE RENNERSCLUB
+                        NOORDHOLLANDS DAGB@NOORDHOLLANDS DAGB
+                        VOLKSKRANT@VOLKSKRANT
+                        STICHTING HISTORISCHE KRIN@STICHTING HISTORISCHE KRIN
+                        ATLETIEKVERENIGING@ATLETIEKVERENIGING
+                        NATUURMONUMENTEN@NATUURMONUMENTEN
+                        OMROEPVERENIGING VPRO@OMROEPVERENIGING VPRO
+                        """.toList()
+        ),
+
+//        Category(
+//            category = "Extra",
+//            searchWords = """
+//                        THUISBEZORGD
+//                        WONING BLEISWIJK
+//                        IKEA
+//                        TIKKIE
+//                        PHILIPSEN
+//                        TWISKE
+//                        BEKKER
+//                        BESTELLING
+//                        ROOM70
+//                        PALMAVERDE
+//                        STUDIO ARMIN
+//                        SEP DE HAVEN VAN TEXEL
+//                        KOFFIEHUIS
+//                        VERMAAT LEISURE
+//                        WE RIDE
+//                        BOL.COM
+//                        ZALANDO
+//                        VITAILY
+//                        PRAXIS
+//                        GAMMA
+//                        BLOKKER
+//                        ALOHA
+//                        RINUS DE RUYTER BLOEM
+//                        KNOEST ETEN &DRINKEN
+//                        STUMPEL
+//                        CCV ROYS
+//                        GASTERIJ KRUISBERG
+//                        RAP YOUNG ART FESTIVA
+//                        JACK S CAFE B.V
+//                        YUKSEL DELICATESSEN
+//                        CCV DE AMBACHTELIJKE W
+//                        BEVER
+//                        DECATHLON
+//                        IMMING BIKES
+//                        SUMUP
+//                        KRINGLOOP HEEMSKERK
+//                        XENOS
+//                        SIMONS UW TOPSLIJTER
+//                        TRIER
+//                        MANDERSCHEID
+//                        GEWOONINWIJKAA
+//                        GEWOON IN WIJK AAN ZEE
+//                        BITBURG
+//                        SCHRAARD
+//                        SUMUP GOUDEN NAALD
+//                        LOKAAL
+//                        VONKELS
+//                        RESTAURANT  T EETHUY
+//                        PG CENTRUM-RINGERS
+//                        TER STAL
+//                        MCDONALD
+//                        BEDBURG
+//                        GEROLSTEIN
+//                        HERTOGENBOS
+//                        KIOSK
+//                        Q PARK
+//                        LAURENTZ
+//                        RIJWIELH. T.BEENTJES
+//                        KOFFIE-DIK
+//                        BABBERICH
+//                        OBERHONNEFELD,LAND: DE
+//                        ELLWANGEN,LAND: DE
+//                        NASSEREITH,LAND: AT
+//                        PRAD AM STILF,LAND: IT
+//                        BORMIO,LAND: IT
+//                        ATM,LAND: IT
+//                        NAUDERS/RESCH,LAND: AT
+//                        DIETMANNSRIED,LAND: DE
+//                        GELDMAAT
+//                        STADSSCHOUWB
+//                        HEILIGENROTH,LAND: DE
+//                        HEMA
+//                        CAFE DE HOEK
+//                        ZOETERMEER
+//                        S-GRAVENHAGE
+//                        MAASTRICHT
+//                        HERTOGENBO
+//                        PARKEREN
+//                        SEPA OVERBOEKING
+//                        VRIJGEZELLENFEEST
+//                        JULIA S UT
+//                         HMSHOST STADSKAMER
+//                         FALAFEL CITY
+//                         JEU DE BOULESBAR
+//                         HAMPTON BY HILTON
+//                         AVF - LOUNGE
+//                          HET DORRUP
+//                          BRUNA
+//                          FA. A. BOONTJES
+//                           DE ROSET
+//                           STRESS VRIJ LICHAAM
+//                           DESIGUALOMSCHRIJVING
+//                           SPAKENBURGSE WARME BAK
+//                           SITEDISH
+//                           CADEAUTJE
+//                           DENNEMAN:BRANDSTOF
+//                           PRIMERA
+//                    """.toList()
+//
+//        ),
         remaining
     )
 

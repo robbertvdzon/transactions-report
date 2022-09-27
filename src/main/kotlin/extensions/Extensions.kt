@@ -2,6 +2,7 @@ package extensions
 
 import model.Mt940Entry
 import java.io.File
+import java.text.DecimalFormat
 import java.time.LocalDate
 
 fun String.toList() = this.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
@@ -22,3 +23,10 @@ fun File.newFile(): File {
     this.writeText("")
     return this
 }
+
+fun Double.formatBedrag(): String{
+    val df = DecimalFormat("0.00")
+    val totalBedragString = String.format("%8s", df.format(this))
+    return totalBedragString
+}
+

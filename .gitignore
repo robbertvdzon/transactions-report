@@ -5,9 +5,10 @@ build
 target
 **/*.iml
 /.data/
-reports
-reports_robbert
-reports_karen
+/reports/
+/reports_old/
+/reports_robbert/
+/reports_karen/
 .DS_Store
 
 operations-demand-service/*.avro

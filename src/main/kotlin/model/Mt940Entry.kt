@@ -16,6 +16,8 @@ class Mt940Entry {
         private set
     var rekeningaanduiding: String? = null
 
+    fun getSummary() = debetID?.name+rekeningaanduiding+description
+
     override fun toString(): String {
         val sb = StringBuilder("At ").append(valutaDatum)
         if (rekeningaanduiding != null) {
