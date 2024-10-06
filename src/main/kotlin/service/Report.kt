@@ -252,7 +252,7 @@ object SummaryReport {
         }
         if (result.contains("SEPA PERIODIEKE OVERB")) {
             val splitted = result.split(":")
-            result = splitted[4]
+            result = splitted[splitted.size-1]
         }
 
         return result.trim().fixedSize(100)  + " ==> " + this

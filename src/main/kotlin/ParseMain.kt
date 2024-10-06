@@ -11,11 +11,8 @@ object ParseMain {
 
         val categories = Categories.categories
 
-        val fromMonth = 0L
-        val toMonth = 9L
-//        val totalMonthsToProcess = 16L
-//        val totalMonthsToProcess = 17L
-//        val totalMonthsToProcess = 1L
+        val fromMonth = 1L
+        val toMonth = 12L
         val monthsToProcess = (fromMonth..toMonth).toList()
         SummaryReport.createEmptyFiles(monthsToProcess)
 
@@ -32,8 +29,8 @@ object ParseMain {
 
         val category  =categories.first { it.category=="Remaining" }
         val aantalMaanden = toMonth - fromMonth +1
-//        SummaryReport.reportSubcategorieAllPeriod(categories, aantalMaanden)
-//        SummaryReport.reportSubcategorieAllPeriod(listOf(category), aantalMaanden)
+        SummaryReport.reportSubcategorieAllPeriod(categories, aantalMaanden)
+        SummaryReport.reportSubcategorieAllPeriod(listOf(category), aantalMaanden)
 
     }
 }

@@ -104,6 +104,9 @@ object Parser {
             if (split.size==2) {
                 val searchWordsListRequired = subCategory.getSearchWordsRequired()
                 val searchWordsListForbidden = subCategory.getSearchWordsForbidden()
+                if (category.category=="Pensioen Karen"){
+                    println("")
+                }
 
                 val transactions = mutableTransactions
                     .filter {
@@ -116,11 +119,14 @@ object Parser {
                         val allRequiredWordsFound = requiredWordsSearchResult.all { it==true }
                         val allForbiddendWordsNotFound = forbiddenWordsSearchResult.all { it==false }
                         val found = allRequiredWordsFound && allForbiddendWordsNotFound
-                        if (found) {
-//                            println("")
+                        if (found && it.getSummary().contains("HARVEY NASH")) {
+                            println("")
                         }
                         found
                     }
+                if (category.category=="Pensioen Karen"){
+                    println("transactions:"+transactions.size)
+                }
                 subCategory.transactions.addAll(transactions)
                 category.transactions.addAll(transactions)
                 mutableTransactions.removeAll(transactions)

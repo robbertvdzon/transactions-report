@@ -4,7 +4,6 @@ import model.Category
 import extensions.toList
 
 object Categories {
-
     val remaining = Category(
         category = "Remaining",
         searchWords = listOf("(Zie transacties)")
@@ -33,6 +32,8 @@ object Categories {
                     SALARIS KAREN@SALARIS KAREN
                     SALARIS ROBBERT@SALARIS ROBBERT
                     OVERBOEKING@OMSCHRIJVING: OVER#RC VAN DER ZON
+                    OVERBOEKING@NL50ABNA0113259964BIC
+                    OVERBOEKING@RC VAN DER ZON CJ#SEPA PERIODIEKE OVERB.#!REAAL
                     """.toList()
         ),
         Category(
@@ -46,6 +47,13 @@ object Categories {
             category = "Pensioen Robbert",
             searchWords = """
                     Brand New Day@BND#PENSIOENREKENING
+                        """.toList()
+        ),
+        Category(
+            category = "Pensioen Karen",
+            searchWords = """
+                    Reaal@Reaal#SEPA PERIODIEKE OVERB.
+                    BND@NL34ABNA0548027153BIC
                         """.toList()
         ),
         Category(
@@ -122,6 +130,7 @@ object Categories {
             category = "Inkomsten Robbert",
             searchWords = """
                 INKOMSTEN@532750330#CREDIT#!SALARIS#!A.G. VAN DER ZON
+                INKOMSTEN@HARVEY NASH
                     """.toList()
         ),
 
@@ -149,6 +158,7 @@ object Categories {
                         ARTSEN ZONDER GRENZEN@ARTSEN ZONDER GRENZEN
                         KANKERBESTRIJDING@KANKERBESTRIJDING
                         DIABETES FDS@DIABETES FDS
+                        CORDAID@STICHTING CORDAID MACHTIGING
                         """.toList()
         ),
         Category(
@@ -176,6 +186,12 @@ object Categories {
                         ISTANBUL MARKET@ISTANBUL MARKET
                         SLAGERIJ JOHN DE ROODE@SLAGERIJ JOHN DE ROODE
                         VOMAR@VOMAR
+                        LUNCHROOM-FRIETHUYS@LUNCHROOM-FRIETHUYS
+                        MAKRO@MAKRO
+                        SLAGERIJ DE ROODE@SLAGERIJ DE ROODE
+                        DE GROENTE & FRUIT@DE GROENTE & FRUIT 
+                        ACTION@ACTION 1321
+                        WIM KOELMAN@WIM KOELMAN
                         """.toList()
         ),
 
@@ -184,7 +200,7 @@ object Categories {
         Category(
             category = "vaste lasten",
             searchWords = """
-                        OBVION@OBVION
+                        OBVION HYPOTHEEK@OBVION
                         DE NEDERLANDSE KLUIS@DE NEDERLANDSE KLUIS
                         NAT POSTCODE LOTERIJ@NAT POSTCODE LOTERIJ
                         MYLIFE KAREN@HEALTH CLUB HEEMSKERK#MYLIFE LIFE
@@ -208,112 +224,16 @@ object Categories {
                         ATLETIEKVERENIGING@ATLETIEKVERENIGING
                         NATUURMONUMENTEN@NATUURMONUMENTEN
                         OMROEPVERENIGING VPRO@OMROEPVERENIGING VPRO
+                        BUDGET ENERGIE@BUDGET ENERGIE
+                        ZIGGO@ZIGGO
+                        MUSEUMKAART@STICHTING MUSEUMKAARTOMSCHRIJVING
+                        HARMONY INSURANCES@HARMONY INSURANCES
+                        ABN AMRO@ABN AMRO BANK N.V.
+                        AMAZON@AMAZON EU
+                        MAERE APOTHEEK@MAERE APOTHEEK
+                        CHIROPRACTIE@CHIROPRACTIE
                         """.toList()
         ),
-
-//        Category(
-//            category = "Extra",
-//            searchWords = """
-//                        THUISBEZORGD
-//                        WONING BLEISWIJK
-//                        IKEA
-//                        TIKKIE
-//                        PHILIPSEN
-//                        TWISKE
-//                        BEKKER
-//                        BESTELLING
-//                        ROOM70
-//                        PALMAVERDE
-//                        STUDIO ARMIN
-//                        SEP DE HAVEN VAN TEXEL
-//                        KOFFIEHUIS
-//                        VERMAAT LEISURE
-//                        WE RIDE
-//                        BOL.COM
-//                        ZALANDO
-//                        VITAILY
-//                        PRAXIS
-//                        GAMMA
-//                        BLOKKER
-//                        ALOHA
-//                        RINUS DE RUYTER BLOEM
-//                        KNOEST ETEN &DRINKEN
-//                        STUMPEL
-//                        CCV ROYS
-//                        GASTERIJ KRUISBERG
-//                        RAP YOUNG ART FESTIVA
-//                        JACK S CAFE B.V
-//                        YUKSEL DELICATESSEN
-//                        CCV DE AMBACHTELIJKE W
-//                        BEVER
-//                        DECATHLON
-//                        IMMING BIKES
-//                        SUMUP
-//                        KRINGLOOP HEEMSKERK
-//                        XENOS
-//                        SIMONS UW TOPSLIJTER
-//                        TRIER
-//                        MANDERSCHEID
-//                        GEWOONINWIJKAA
-//                        GEWOON IN WIJK AAN ZEE
-//                        BITBURG
-//                        SCHRAARD
-//                        SUMUP GOUDEN NAALD
-//                        LOKAAL
-//                        VONKELS
-//                        RESTAURANT  T EETHUY
-//                        PG CENTRUM-RINGERS
-//                        TER STAL
-//                        MCDONALD
-//                        BEDBURG
-//                        GEROLSTEIN
-//                        HERTOGENBOS
-//                        KIOSK
-//                        Q PARK
-//                        LAURENTZ
-//                        RIJWIELH. T.BEENTJES
-//                        KOFFIE-DIK
-//                        BABBERICH
-//                        OBERHONNEFELD,LAND: DE
-//                        ELLWANGEN,LAND: DE
-//                        NASSEREITH,LAND: AT
-//                        PRAD AM STILF,LAND: IT
-//                        BORMIO,LAND: IT
-//                        ATM,LAND: IT
-//                        NAUDERS/RESCH,LAND: AT
-//                        DIETMANNSRIED,LAND: DE
-//                        GELDMAAT
-//                        STADSSCHOUWB
-//                        HEILIGENROTH,LAND: DE
-//                        HEMA
-//                        CAFE DE HOEK
-//                        ZOETERMEER
-//                        S-GRAVENHAGE
-//                        MAASTRICHT
-//                        HERTOGENBO
-//                        PARKEREN
-//                        SEPA OVERBOEKING
-//                        VRIJGEZELLENFEEST
-//                        JULIA S UT
-//                         HMSHOST STADSKAMER
-//                         FALAFEL CITY
-//                         JEU DE BOULESBAR
-//                         HAMPTON BY HILTON
-//                         AVF - LOUNGE
-//                          HET DORRUP
-//                          BRUNA
-//                          FA. A. BOONTJES
-//                           DE ROSET
-//                           STRESS VRIJ LICHAAM
-//                           DESIGUALOMSCHRIJVING
-//                           SPAKENBURGSE WARME BAK
-//                           SITEDISH
-//                           CADEAUTJE
-//                           DENNEMAN:BRANDSTOF
-//                           PRIMERA
-//                    """.toList()
-//
-//        ),
         remaining
     )
 

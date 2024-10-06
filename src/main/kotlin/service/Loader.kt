@@ -9,10 +9,10 @@ import java.time.LocalDate
 
 object Loader {
     fun loadTransactions(): List<Mt940Entry> {
-//        val lineNumberReader = LineNumberReader(FileReader("/tmp/MT940220802191727.STA"))
-//        val lineNumberReader = LineNumberReader(FileReader("/tmp/karen.sta"))
-//        val lineNumberReader = LineNumberReader(FileReader("/tmp/robbert.sta"))
-        val lineNumberReader = LineNumberReader(FileReader("/tmp/MT940220829172602.STA"))
+//        val lineNumberReader = LineNumberReader(FileReader("/Users/robbertvanderzon/git/transactions-report/downloads/MT940241006110612.STA"))
+//        val lineNumberReader = LineNumberReader(FileReader("/Users/robbertvanderzon/git/transactions-report/downloads/2024.STA"))
+        val lineNumberReader = LineNumberReader(FileReader("/Users/robbertvanderzon/git/transactions-report/downloads/heeljaar.STA"))
+//        val lineNumberReader = LineNumberReader(FileReader("/Users/robbertvanderzon/git/transactions-report/downloads/eind-vorigjaar.STA"))
         val parse = Mt940Parser.parse(lineNumberReader)
         val transactions = parse.records.flatMap { it?.entries ?: emptyList() }
         return transactions
