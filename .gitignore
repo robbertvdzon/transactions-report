@@ -10,6 +10,7 @@ target
 /reports_old/
 /reports_robbert/
 /reports_karen/
+/downloads/
 .DS_Store
 
 operations-demand-service/*.avro
