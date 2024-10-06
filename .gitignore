@@ -6,6 +6,7 @@ target
 **/*.iml
 /.data/
 /reports/
+/reports-copy/
 /reports_old/
 /reports_robbert/
 /reports_karen/
